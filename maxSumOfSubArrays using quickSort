@@ -1,0 +1,73 @@
+package LinkedList;
+
+import java.util.Arrays;
+
+public class maxSumOfSubarrays {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	int arr[] = { 200, 100, 500, 300};
+	int n = arr.length ; 
+	int k = 5; 
+	
+	if(k > n ) {
+		System.out.print("Invalid");
+	 return;
+	}
+	quickSort( arr, 0 , arr.length-1);
+	 System.out.println(Arrays.toString(arr));
+	 
+	int a = sumOfSubarray(arr, n,k );
+	System.out.println(a); 	 	 	
+	}
+	
+	
+	public static int sumOfSubarray(int arr[] ,int n, int k){
+		int sum = 0;
+		for(int i=n-k ; i<n ; i++) {
+			sum = sum + arr[i];
+		}
+		return sum;
+	
+	}
+	
+	
+	
+	public static void quickSort(int arr[] , int l , int r) {
+		
+		if(l >= r) return ;
+		
+		int pivot = arr[r];
+		
+		int Pi = partitionIndex(arr , pivot , l , r);
+	
+		quickSort(arr , l , Pi-1);
+		quickSort (arr, Pi+1 , r);
+		
+		
+	}
+	
+	public static int partitionIndex(int arr[] , int pivot , int l, int r) {
+		int i = l;
+		int j = l;
+		
+		while(i<=r) {
+			if(arr[i] <= pivot) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+		
+				i++;
+				j++;
+			}
+			
+			else{
+				i++;
+				}
+		}
+		
+		return j-1;
+	}
+
+}
